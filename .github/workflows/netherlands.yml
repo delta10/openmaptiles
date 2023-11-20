@@ -1,0 +1,26 @@
+name: Publish netherlands.mbtiles
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build mbiltes
+      run: ./quickstart.sh netherlands
+
+    - name: Upload tiles to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: data/netherlands.mbtiles
+        asset_name: netherlands.mbtiles
+        tag: ${{ github.ref }}
+        overwrite: true
