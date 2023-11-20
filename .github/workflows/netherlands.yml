@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: Fast
 
     steps:
     - uses: actions/checkout@v3
